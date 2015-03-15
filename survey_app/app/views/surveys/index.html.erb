@@ -1,0 +1,27 @@
+<h2>Complete the survey!</h2>
+<form action="surveys/create" method="post">
+	<input name="authenticity_token" value="<% form_authenticity_token %>" type="hidden">
+
+	<label>Your Name:</label>
+	<input type='text' name='survey[name]' placeholder='name' />
+
+	<label>Dojo Location:</label>
+	<select name='survey[location]'>
+		<option value="san_jose">San Jose</option>
+		<option value="seattle">Settle</option>
+		<option value="los_angeles">Los Angeles</option>
+	</select>
+
+	<label>Favorite Language:</label>
+	<select name='survey[language]'>
+		<option value="ruby">Ruby</option>
+		<option value="php">PHP</option>
+		<option value="c">C#</option>
+	</select>
+
+	<label>Comment:</label>
+  	<textarea type='text' name='survey[comment]' placeholder='comment' /></textarea>
+
+	<br>
+	<input type="submit" value="Create">
+</form>
