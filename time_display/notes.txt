@@ -1,0 +1,62 @@
+NEW RAILS PROJECT
+bash	rails new sample_app
+bash	rais console	(cd into where new project was made)
+bash	rails s(erver)  (cd into where new project was made)
+
+
+ADD GEMS
+(1) sublime	gemfile > add: 
+		(1) gem "hirb"  
+		(2) gem 'rails-footnotes', '>= 4.0.0', '<5'
+		(3) gem 'skeleton-rails'
+			gem 'bootstrap-sass', '~> 3.3.3'
+			gem 'autoprefixer-rails'
+
+(2) bash(app_directory)	run bundle install
+(3) bash(app_directory) 
+	rails generate rails_footnotes:install
+	rails g skeleton:install
+
+(4) restart rails console
+(5) Hirb.enable
+
+AFTER BUNDLE INSTALL
+rails generate rails_footnotes:install
+
+ADD ROUTES
+(1) >> config >> routes >> root 'times#main'
+(2) >> rake routes  # this tells you all the various urls that get configured
+
+
+CREATE A CONTROLLER
+rails g controller Surveys index result
+# this create two files -> controllers/concerns/products_controller
+						-> views/products/index && new
+# go to http://localhost:3000/products
+# go to http://localhost:3000/products/new
+
+
+
+Rails s
+
+Go to http://localhost:3000
+
+
+
+
+CREATE MODEL
+rails g model Product name:string description:text
+rake db:migrate
+rails g controller Products index
+
+
+ADD TO ROUTES
+ post "products" => "products#create"
+
+rails g model Product name:string description:string
+rake db:migrate
+
+Product.create(name: 'Cups', description:'awesome dojo cups')
+
+adjust your config/environments/development.rb
+config.log_level = :warn
