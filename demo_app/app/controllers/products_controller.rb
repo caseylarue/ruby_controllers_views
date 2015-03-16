@@ -33,10 +33,6 @@ class ProductsController < ApplicationController
 	    # session[:id] = params[:id] #we will talk about params in a bit
  	end ##end of create method
 
- 	private def product_params
-   		params.require(:product).permit(:name, :description)
-  	end
-
 
  	def update
   		@product = Product.update( product_params )
@@ -48,5 +44,10 @@ class ProductsController < ApplicationController
 	    #sets the session[:id] to nil, overwriting the previous value
 	    session[:id] = nil
   	end  ##end of logout method
+
+  	private 
+ 	def product_params
+   		params.require(:product).permit(:name, :description)
+  	end
 
 end
