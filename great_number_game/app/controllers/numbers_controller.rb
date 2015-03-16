@@ -2,7 +2,6 @@ class NumbersController < ApplicationController
   def index
   	if session[:number].nil?
   		session[:number] = rand(1..100)
-  		puts session[:number].class
   	end
   end
 

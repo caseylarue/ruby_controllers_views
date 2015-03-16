@@ -1,0 +1,29 @@
+// Place all the styles related to the Rpgs controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+#container {
+	margin: 0px auto;
+	width: 970px;
+	height: 350px;
+	margin-top: 40px;
+}
+.total_gold {
+	border: 1px solid black;
+	width: 100px;
+	height: 25px;
+	text-align: center;
+	padding-top: 5px;
+}
+#find_gold {
+	width: 970px;
+	height: 200px;
+}
+.gold_gen {
+	display: inline-block;
+	vertical-align: top;
+	border: 1px solid silver;
+	width: 175px;
+	height: 150px;
+	text-align: center;
+}
