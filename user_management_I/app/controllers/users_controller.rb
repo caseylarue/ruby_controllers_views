@@ -1,17 +1,30 @@
 class UsersController < ApplicationController
+	before_action :set_user, only: [:show, :edit, :update, :destroy]
+
   	def index
-  		#session.clear
   		@users = User.all
   	end
 
+  	def show
+  	end
+
+  	def edit
+  	end
+
+
 	def new
-		#session.clear
     	@user = User.new
   	end
 
-  	def create
-  		#@user = User.create(user_params)
+  	def update
+  		user1 = User.find(params[:id])
+  		user1.update( user_params )
+  		session[:user] = user1
+  		redirect_to '/'
+  	end
 
+
+  	def create
   		@user = User.new(user_params)
 		if @user.valid?
 			@user.save
@@ -25,8 +38,17 @@ class UsersController < ApplicationController
 
   	end
 
-  	private
-  	def user_params
-  		params.require(:user).permit(:first_name, :last_name, :email, :password)
+  	def destroy
+  		User.find(params[:id]).destroy
+  		redirect_to '/'
   	end
+
+
+  	private
+  		def set_user
+    		@user = User.find(params[:id])
+   		end
+	  	def user_params
+	  		params.require(:user).permit(:first_name, :last_name, :email, :password)
+	  	end
 end

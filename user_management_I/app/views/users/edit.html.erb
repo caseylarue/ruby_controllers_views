@@ -1,0 +1,15 @@
+
+<form action='/users/update/<%= @user.id %>' method='post'>
+<input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+
+<label>Your First Name:</label>
+<input type='text' name='user[first_name]' value='<%= @user.first_name %>' />
+
+<label>Your Last Name:</label>
+<input type='text' name='user[last_name]' value='<%= @user.last_name %>' />
+
+<label>Your Email:</label>
+<input type='email' name='user[email]' value='<%= @user.email %>' />
+
+<input type='submit' value='Submit'>
+</form>
