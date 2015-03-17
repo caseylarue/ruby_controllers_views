@@ -1,0 +1,30 @@
+<h1>Listing Products</h1>
+<p>Find me in app/views/products/index.html.erb</p>
+
+
+
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Price</th>
+      <th colspan="3">Action</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @products.each do |product| %>
+      <tr>
+        <td><%= product.name %></td>
+        <td><%= product.description %></td>
+        <td><%= product.price %></td>
+        <td> <a href="/products/show/<%= product.id %>">Show</a> | <a href="/products/edit/<%= product.id %>">Edit</a> | <a href="/products/destroy/<%= product.id %>">Delete</a></td>
+      </tr>
+    <% end %>
+  </tbody>
+
+</table>
+
+<a href="/products/new"><h3>New Product</h3></a>

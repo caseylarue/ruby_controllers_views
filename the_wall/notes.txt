@@ -1,0 +1,52 @@
+NEW RAILS PROJECT
+bash	rails new sample_app
+bash	rais console	(cd into where new project was made)
+bash	rails s(erver)  (cd into where new project was made)
+
+
+ADD GEMS
+(1) sublime	gemfile > add: 
+		(1) gem "hirb"  
+		(2) gem 'rails-footnotes', '>= 4.0.0', '<5'
+		(3) gem 'skeleton-rails'
+			gem 'bootstrap-sass', '~> 3.3.3'
+			gem 'autoprefixer-rails'
+		(4)  gem 'simple_form'
+
+(2) bash(app_directory)	run bundle install
+(3) bash(app_directory) 
+	rails generate rails_footnotes:install
+	rails generate simple_form:install
+	rails g skeleton:install
+
+(4) restart rails console
+(5) Hirb.enable
+
+AFTER BUNDLE INSTALL
+rails generate rails_footnotes:install
+
+CREATE CONTROLLER
+rails g controller Users index
+
+CREATE MODEL
+rails g model User first_name:string last_name:string email:string encrypted_password:string salt:string
+x		sbl 		db>migrate folder  >> to verify
+x		rails_c		rake db:migrate
+
+
+ADD ROUTES
+(1) >> config >> routes >> root 'times#main'
+
+
+CREATE USERS
+User.create(first_name:"Betty", last_name:"Jones", email:"betty@email.com", password:"pass")
+
+User.create(first_name:"Debbie", last_name:"LaRue", email:"debbie@email.com", password:"pass")
+
+User.create(first_name:"Jason", last_name:"LaRue", email:"jason@email.com", password:"pass")
+
+User.create(first_name:"Judy", last_name:"Keene", email:"judy@email.com", password:"pass")
+
+User.create(first_name:"Judy", last_name:"Keene", email:"judy@email.com", password:"pass")
+
+
