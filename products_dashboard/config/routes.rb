@@ -1,26 +1,27 @@
 Rails.application.routes.draw do
-  get 'products/index'
+  #get 'products/index'
 
   #get 'products/show'
-  get 'products/show/:id' => 'products#show'
+  #get 'products/show/:id' => 'products#show'
 
-  get 'products/new'
+  #get 'products/new'
 
   #get 'products/edit'
-  get 'products/edit/:id' => 'products#edit'
+  #get 'products/edit/:id' => 'products#edit'
 
-  get 'products/create'
+  #get 'products/create'
 
-  get 'products/update'
+  #get 'products/update'
 
   #get 'products/destroy'
-  get 'products/destroy/:id' => 'products#destroy'
+  #get 'products/destroy/:id' => 'products#destroy'
 
-
+  resources :products
   root 'products#index'
+  
 
-  post 'products/create'
-  post 'products/update/:id' =>'products#update'
+  #post 'products/create'
+  #post 'products/update/:id' =>'products#update'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

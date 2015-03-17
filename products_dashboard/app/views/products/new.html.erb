@@ -1,23 +1,8 @@
 <h1>Add a New Product</h1>
 
-<% if flash[:errors]  %>
-	<% flash[:errors].each do |error| %>
-		<%=  error %></br>
-	<% end %>
+<%= simple_form_for @product do |f| %>
+	<%= f.input :name %>
+	<%= f.input :description %>
+	<%= f.input :price %>
+	<%= f.button :submit %>
 <% end %>
-
-
-<form class="new_product" action='/products/create' method='post'>
-	<input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
-
-	<label>Product Name:</label>
-	<input type='text' name='product[name]' placeholder='name' />
-
-	<label>Product Description:</label>
-	<input type='text' name='product[description]' placeholder='description' />
-
-	<label>Product Price:</label>
-	<input type='text' name='product[price]' placeholder='price' />
-
-	<input type='submit' value='Submit'>
-</form>

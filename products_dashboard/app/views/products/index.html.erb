@@ -1,8 +1,4 @@
 <h1>Listing Products</h1>
-<p>Find me in app/views/products/index.html.erb</p>
-
-
-
 
 <table>
   <thead>
@@ -20,11 +16,13 @@
         <td><%= product.name %></td>
         <td><%= product.description %></td>
         <td><%= product.price %></td>
-        <td> <a href="/products/show/<%= product.id %>">Show</a> | <a href="/products/edit/<%= product.id %>">Edit</a> | <a href="/products/destroy/<%= product.id %>">Delete</a></td>
+        <td> <%= link_to 'Show', product %> | <%= link_to 'Edit', edit_product_path(product) %> | <%= link_to 'Delete', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 
 </table>
 
-<a href="/products/new"><h3>New Product</h3></a>
+<br>
+
+<%= link_to 'New Product', new_product_path %>
