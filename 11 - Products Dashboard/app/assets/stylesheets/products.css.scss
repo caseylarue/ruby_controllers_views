@@ -1,0 +1,57 @@
+@import "bootstrap";
+
+@import "bootstrap/theme";
+
+html, body{
+	background-color: #E8E8E8;
+	height: 100%;
+}
+
+#wrapper{
+	width: 800px;
+	height: 100%;
+	padding: 10px 20px;
+	margin: 0px auto;
+	background-color: white;
+	box-shadow: 0 0 30px gray;
+}
+
+.table{
+	width: 650px;
+	margin: 20px 0px;
+}
+
+label{
+	display: block;
+	margin-top: 10px;
+}
+
+input, textarea{
+	width: 200px;
+}
+
+input[type=submit]{
+	width: 100px;
+	margin: 15px 0px;
+}
+
+li{
+	margin: 5px 0px;
+}
+
+li strong{
+	width: 100px;
+}
+
+a{
+	padding-right: 20px;
+}
+
+a.left_bordered{
+	border-left: 1px solid gray;
+	padding-left: 20px
+}
+
+td a{
+	padding-right: 0px;
+}

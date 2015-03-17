@@ -1,5 +1,6 @@
 <h1>Product:</h1>
 
+
 <p>
   <strong>Name:</strong>
   <%= @product.name %>
@@ -14,6 +15,12 @@
   <strong>Price:</strong>
   <%= @product.price %>
 </p>
+
+<p>
+  <strong>Category:</strong>
+  <%= @product.category_name %>
+</p>
+
 
 <%= link_to 'Edit', edit_product_path(@product) %> |
 <%= link_to 'Back', products_path %>

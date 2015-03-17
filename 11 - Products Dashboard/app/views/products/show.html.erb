@@ -1,0 +1,10 @@
+<div id="wrapper">
+	<ul class="list-unstyled">
+		<li><strong class="pull-left">Name:</strong><%= @product[:name] %></li>
+		<li><strong class="pull-left">Description:</strong><%= @product[:description] %></li>
+		<li><strong class="pull-left">Price:</strong><%= @product[:pricing] %></li>
+		<li><strong class="pull-left">Category:</strong><%= @product.category.name %></li>
+		<div class="clearfix"></div>
+	</ul>
+	<a href="/products/<%= @product[:id] %>/edit">Edit</a><a href="/products" class="left_bordered">Back</a>
+</div>

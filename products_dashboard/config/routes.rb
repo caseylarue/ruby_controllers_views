@@ -18,7 +18,8 @@ Rails.application.routes.draw do
 
   resources :products
   root 'products#index'
-  
+
+  post 'products/:id' => 'products#update'
 
   #post 'products/create'
   #post 'products/update/:id' =>'products#update'

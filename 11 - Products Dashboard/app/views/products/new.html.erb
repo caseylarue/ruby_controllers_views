@@ -1,0 +1,11 @@
+<div id="wrapper">
+	<h3 class="text-primary">New product</h3>
+	<%= simple_form_for @product do |f| %>
+		<%= f.association :category, :include_blank => false %>
+		<%= f.input :name %>
+		<%= f.input :description %>
+		<%= f.input :pricing, :value => "Price" %>
+		<%= f.submit "Create", :class => "btn btn-primary" %>
+	<% end %>
+	<a href="/products">Back</a>
+</div>

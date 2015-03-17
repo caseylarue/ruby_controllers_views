@@ -1,11 +1,15 @@
 class ProductsController < ApplicationController
+  #before_action :set_product, only: [:show, :edit, :update, :destroy]
   before_action :set_product, only: [:show, :edit, :update, :destroy]
 
   def index
-    @products = Product.all
+    #@products = Product.all
+    @products = Product.joins(:category).select('products.*, categories.name as category_name')
   end
 
   def show
+    @result = Product.joins(:category).select('products.*, categories.name as category_name').where('products.id = ?', params[:id].to_i)
+    @product = @result.first
   end
 
   def new
@@ -13,6 +17,9 @@ class ProductsController < ApplicationController
   end
 
   def edit
+    @categories = Category.all
+    @result = Product.joins(:category).select('products.*, categories.name as category_name').where('products.id = ?', params[:id].to_i)   
+    @product = @result.first
   end
 
   def create
@@ -28,6 +35,7 @@ class ProductsController < ApplicationController
   end
 
   def update
+    puts "HELLO in the update"
     product1 = Product.find(params[:id])
     product1.update( product_params )
     #session[:product] = product1
@@ -44,6 +52,6 @@ class ProductsController < ApplicationController
       @product = Product.find(params[:id])
     end
     def product_params
-      params.require(:product).permit(:name, :description, :price)
+      params.require(:product).permit(:name, :description, :price, :category, :category_id)
     end
 end

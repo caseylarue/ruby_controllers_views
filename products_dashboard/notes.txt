@@ -59,4 +59,28 @@ Category.create(name:"Ninjas")
 
 B) Create a field in the products table called category_id refering to the products table  (establish the had_many and belongs_to relationship)
 
-C) allow the user to edit the products category throught the app
+* add category_id to Product table (with fkey)
+Product belongs_to :category
+rails g migration AddCategoryIdToProducts category_id:integer
+
+*open the migrate file to check
+*rake db:migrate
+
+C) Add Category to Products:
+   home page, show page, new page, and edit page
+	Product.create(category: Category.find(3), name:"gloves", description:"gardening gloves", price:20.01)
+
+D) 	SHOW ALL PRODUCTS: 
+	Product.joins(:category).select('products.*, categories.name as category_name')
+
+	SHOW ONE PRODUCT:
+	Product.joins(:category).select('products.*, categories.name as category_name').where('products.id = ?', 4)
+
+	UPDATE PRODUCT:
+	Product.find(5).update(category_id:5)
+
+	DELETE PRODUCT:
+
+
+
+

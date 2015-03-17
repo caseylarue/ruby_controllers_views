@@ -1,0 +1,62 @@
+x
+NEW RAILS PROJECT
+bash	rails new sample_app
+bash	rais console	(cd into where new project was made)
+bash	rails s(erver)  (cd into where new project was made)
+
+x
+ADD GEMS
+(1) sublime	gemfile > add: 
+		(1) gem "hirb"  
+		(2) gem 'rails-footnotes', '>= 4.0.0', '<5'
+			gem 'simple_form'
+		(3) gem 'skeleton-rails'
+			gem 'bootstrap-sass', '~> 3.3.3'
+			gem 'autoprefixer-rails'
+
+(2) bash(app_directory)	run bundle install
+(3) bash(app_directory) 
+	rails generate rails_footnotes:install
+	rails generate simple_form:install
+	rails g skeleton:install
+
+(4) ******restart rails server
+(5) Hirb.enable
+
+x
+AFTER BUNDLE INSTALL
+rails generate rails_footnotes:install
+
+ROUTES
+resources :products
+rake routes
+
+x
+CREATE CONTROLLER
+rails g controller Products index show new edit create update destroy
+
+x
+CREATE MODEL
+rails g model Product name:string description:text price:float
+x		sbl 		db>migrate folder  >> to verify
+x		rails_c		rake db:migrate
+
+Add validations to product model
+
+Product.create(name:"cup", description:"for drinking", price:10.00)
+
+
+A) CREATE MODEL
+rails g model Category name:string 
+x		sbl 		db>migrate folder  >> to verify
+x		rails_c		rake db:migrate
+Category.create(name:"Electronics")
+Category.create(name:"Household")
+Category.create(name:"Gardening")
+Category.create(name:"Automotive")
+Category.create(name:"Ninjas")
+
+
+B) Create a field in the products table called category_id refering to the products table  (establish the had_many and belongs_to relationship)
+
+C) allow the user to edit the products category throught the app

@@ -1,0 +1,12 @@
+<div id="wrapper">
+	<h3 class="text-primary">Edit product</h3>
+	<%= simple_form_for @product, :url => { :action => "update" } do |f| %>
+		<%= f.input :_method, :as => :hidden, :input_html => { :value => "patch" } %>
+		<%= f.association :category, :include_blank => false %>
+		<%= f.input :name %>
+		<%= f.input :description %>
+		<%= f.input :pricing, :value => "Price" %>
+		<%= f.submit "Update", :class => "btn btn-primary" %>
+	<% end %>
+	<a href="/products/<%= @product[:id] %>">Show</a><a href="/products" class="left_bordered">Back</a>
+</div>
