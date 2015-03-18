@@ -1,8 +1,20 @@
-<h1>Add a New Product</h1>
+<div class="container">
+	<h1>Add a New Product</h1>
 
-<%= simple_form_for @product do |f| %>
-	<%= f.input :name %>
-	<%= f.input :description %>
-	<%= f.input :price %>
-	<%= f.button :submit %>
-<% end %>
+	<% if @errors %>
+		<% @errors.each do |error| %>
+			<div class="alert-danger"><%= error %></div>
+		<% end %>
+	<% end %>
+
+	<%= simple_form_for @product do |f| %>
+		<%= f.association :category %>
+		<%= f.input :name, placeholder: 'product' %>
+		<%= f.input :description %>
+		<%= f.input :price %>
+		<%= f.button :submit %>
+	<% end %>
+
+
+	<%= link_to 'Back', products_path %>
+</div>

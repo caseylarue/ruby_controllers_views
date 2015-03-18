@@ -1,39 +1,49 @@
-<h1>Product:</h1>
+<div class="container">
+	<div class="row">
+		<% if flash[:errors] %>
+		    <div id="error_explanation">
+		      <ul>
+		      <% flash[:errors].each do |error| %>
+		        <li><%= error %></li>
+		      <% end %>
+		      </ul>
+		    </div>  
+		<% end %>
 
-<p>
-<strong>Name:</strong>
-<%= @product.name %>
-</p>
+		<h1>Product:</h1>
 
-<p>
-<strong>Description:</strong>
-<%= @product.description %>
-</p>
+		<p>
+		<strong>Name:</strong>
+		<%= @product.name %>
+		</p>
 
-<p>
-<strong>Price:</strong>
-<%= @product.price %>
-</p>
+		<p>
+		<strong>Description:</strong>
+		<%= @product.description %>
+		</p>
 
-<p>
-<strong>Category:</strong>
-<%= @product.category_name %>
-</p>
+		<p>
+		<strong>Price:</strong>
+		<%= @product.price %>
+		</p>
 
-<%= link_to 'Edit', edit_product_path(@product) %> |
-<%= link_to 'Back', products_path %>
+		<p>
+		<strong>Category:</strong>
+		<%= @product.category_name %>
+		</p>
 
-
-
-<%= render "/comments/new" %>
+		<%= link_to 'Edit', edit_product_path(@product) %> |
+		<%= link_to 'Back', products_path %>
 
 
-<% if @comments == nil %>
-<% else %>
-	<% @comments.each do |comment| %>
-	    <br><div><%= comment.comment %></div>
-	<% end %>
-<% end %>
+		<%= render "/comments/new" %>
+		<%= render "/comments/show" %>
+
+	</div>
+
+</div>
+
+
 
 
 

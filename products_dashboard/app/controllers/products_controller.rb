@@ -18,7 +18,7 @@ class ProductsController < ApplicationController
       @comments = nil
     else
       @product = @result.first
-      @comments = Comment.where(product_id: 5)
+      @comments = Comment.where('product_id = ?', params[:id].to_i)
     end
 
   end
