@@ -79,44 +79,8 @@ D) 	SHOW ALL PRODUCTS:
 	UPDATE PRODUCT:
 	Product.find(5).update(category_id:5)
 
-C) Add controller 
-rails g controller Comments create show
-
-rails g model Comment comment:text product:references
-x		sbl 		db>migrate folder  >> to verify
-x		rails_c		rake db:migrate
-
-product.rb
-	has_many :comments  :dependent => :destroy
-
-comment.rb
-	belongs_to :products   :dependent => :destroy
-
-Comment.create(product_id:5, comment:"hi, this is a comment")
-
-Product.joins(:comments).select('products.*, comments.comment')
-
-Comment.where(product_id: 5)
+	DELETE PRODUCT:
 
 
-casey:products_dashboard caseylarue$ rake routes
-      Prefix Verb   URI Pattern                  Controller#Action
-    products GET    /products(.:format)          products#index
-             POST   /products(.:format)          products#create
- new_product GET    /products/new(.:format)      products#new
-edit_product GET    /products/:id/edit(.:format) products#edit
-     product GET    /products/:id(.:format)      products#show
-             PATCH  /products/:id(.:format)      products#update
-             PUT    /products/:id(.:format)      products#update
-             DELETE /products/:id(.:format)      products#destroy
-    comments GET    /comments(.:format)          comments#index
-             POST   /comments(.:format)          comments#create
- new_comment GET    /comments/new(.:format)      comments#new
-edit_comment GET    /comments/:id/edit(.:format) comments#edit
-     comment GET    /comments/:id(.:format)      comments#show
-             PATCH  /comments/:id(.:format)      comments#update
-             PUT    /comments/:id(.:format)      comments#update
-             DELETE /comments/:id(.:format)      comments#destroy
-        root GET    /                            products#index
-             POST   /products/:id(.:format)      products#update
+
 

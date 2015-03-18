@@ -8,19 +8,8 @@ class ProductsController < ApplicationController
   end
 
   def show
-    @comment = Comment.new
-    #@result = Product.joins(:category).select('products.*, categories.name as category_name').where('products.id = ?', params[:id].to_i) 
-    @result = Product.joins(:category, :comments).select('products.*, categories.name as category_name, comments.comment').where('products.id = ?', params[:id].to_i)
-    @result2 = Product.joins(:category).select('products.*, categories.name as category_name').where('products.id = ?', params[:id].to_i) 
-      
-    if @result.empty?
-      @product = @result2.first
-      @comments = nil
-    else
-      @product = @result.first
-      @comments = Comment.where(product_id: 5)
-    end
-
+    @result = Product.joins(:category).select('products.*, categories.name as category_name').where('products.id = ?', params[:id].to_i)
+    @product = @result.first
   end
 
   def new

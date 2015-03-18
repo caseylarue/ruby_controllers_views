@@ -1,17 +1,4 @@
 Rails.application.routes.draw do
-
-  resources :products
-  resources :comments
-  
-  root 'products#index'
-
-  post 'products/:id' => 'products#update'
-
-
-  #get 'comments/create'
-
-  #get 'comments/show'
-
   #get 'products/index'
 
   #get 'products/show'
@@ -29,7 +16,10 @@ Rails.application.routes.draw do
   #get 'products/destroy'
   #get 'products/destroy/:id' => 'products#destroy'
 
- 
+  resources :products
+  root 'products#index'
+
+  post 'products/:id' => 'products#update'
 
   #post 'products/create'
   #post 'products/update/:id' =>'products#update'
