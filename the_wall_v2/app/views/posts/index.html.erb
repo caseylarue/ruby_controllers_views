@@ -1,0 +1,34 @@
+
+<% if @errors %>
+	<% @errors.each do |error| %>
+		<p class="alert-danger"><%= error %></p>
+	<% end %>
+<% end %>
+
+<h1>Post a message</h1>
+<%= render template: new_post_path %>
+
+<% if @posts %>
+	<% @posts.each do |post| %>
+		<div>
+			<%= post.message %>
+			<%= post.created_at %>
+			<% if @comments %>
+				<% @comments.each do |comment| %>
+					<% if comment.post_id == post.id %>
+						<div class="comments col-md-offset-1">
+							<h4><%= comment.user.first_name %> <%= comment.user.last_name %> - <%= comment.created_at.strftime("%B %d, %Y") %></h4>
+							<p><%= comment.message %></p>
+						</div>
+					<% end %>  <!-- end of comments posting -->
+				<% end %>  <!-- end of if comments block -->
+			<% end %>
+			<%= simple_form_for @comment do |f| %>
+				<%= f.input :post, as: :hidden, input_html: { value: post.id } %>
+				<%= f.input :message, required: false, label: false %>
+				<%= f.button :submit, 'Add Comment', class: 'btn-success col-md-offset-10' %>
+			<% end %> <!--  end simple form -->
+		</div>
+	<% end %> <!--  end display posts -->
+<% end %> <!--  end if posts block -->
+

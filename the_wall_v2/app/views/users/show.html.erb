@@ -1,0 +1,7 @@
+<div class="container">
+	<div class="row">
+		<h1><%= @user.first_name %> user id: <%= @user.id %></h1>
+		<%= render "/posts/index" %>
+		<%= link_to('log off', signout_path) %>
+	</div>	
+</div>

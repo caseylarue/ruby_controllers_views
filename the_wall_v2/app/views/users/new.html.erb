@@ -1,0 +1,21 @@
+<div class="container">
+	<div class="row">
+		<h1>Register</h1>
+		<p>This is where you register</p>
+		<% if flash[:errors] %>
+			<% flash[:errors].each do |error| %>
+				<p><%= error %></p>
+			<% end %>
+		<% end %>
+		<%= simple_form_for(@user) do |f| %>
+			<%= f.input :first_name %>
+			<%= f.input :last_name %>
+			<%= f.input :email %>
+			<%= f.input :password %>
+			<%= f.input :password_confirmation %>
+			<%= f.button :submit %>
+		<% end %>
+		<%= render "/sessions/new" %>
+	</div>
+</div>
+

@@ -1,0 +1,161 @@
+x
+NEW RAILS PROJECT
+bash	rails new sample_app
+bash	rais console	(cd into where new project was made)
+bash	rails s(erver)  (cd into where new project was made)
+
+x
+ADD GEMS
+(1) sublime	gemfile > add: 
+		(1) gem "hirb"  
+		(2) gem 'rails-footnotes', '>= 4.0.0', '<5'
+			gem 'simple_form'
+			gem 'bootstrap-sass', '~> 3.3.4'
+
+		(3) gem 'skeleton-rails'
+			gem 'bootstrap-sass', '~> 3.3.3'
+			gem 'autoprefixer-rails'
+
+Import Bootstrap styles in app/assets/stylesheets/application.scss:
+		
+	@import "bootstrap-sprockets";
+	@import "bootstrap";
+
+(2) bash(app_directory)	run bundle install
+(3) bash(app_directory) 
+	rails generate rails_footnotes:install
+	rails generate simple_form:install
+	rails g skeleton:install
+
+(4) ******restart rails server
+(5) Hirb.enable
+
+x
+AFTER BUNDLE INSTALL
+rails generate rails_footnotes:install
+
+ROUTES
+resources :products
+rake routes
+
+x
+CREATE CONTROLLER
+rails g controller Sessions new create destroy
+
+rails g controller Users new create show
+
+x
+CREATE MODEL
+rails g model User first_name:string last_name:string email:string encrypted_password:string salt:string 
+x		sbl 		db>migrate folder  >> to verify
+x		rails_c		rake db:migrate
+
+=======================================
+
+
+ADD HELPER
+app > controllers > application_controller  > include SessionsHelper 
+
+app > controllers > helpers  > sessions_helper.rb
+
+
+CREATE CONTROLLER
+rails g controller Posts index new
+
+rails g controller Comments new create
+
+
+CREATE MODEL
+rails g model Post message:text user:references
+x		sbl 		db>migrate folder  >> to verify
+x		rails_c		rake db:migrate
+
+
+rails g model Comment message:text user:references post:references
+x		sbl 		db>migrate folder  >> to verify
+x		rails_c		rake db:migrate
+
+
+
+
+
+=======================================
+Add validations to users model
+
+Product.create(name:"cup", description:"for drinking", price:10.00)
+
+
+A) CREATE MODEL
+rails g model Category name:string 
+x		sbl 		db>migrate folder  >> to verify
+x		rails_c		rake db:migrate
+Category.create(name:"Electronics")
+Category.create(name:"Household")
+Category.create(name:"Gardening")
+Category.create(name:"Automotive")
+Category.create(name:"Ninjas")
+
+
+B) Create a field in the products table called category_id refering to the products table  (establish the had_many and belongs_to relationship)
+
+* add category_id to Product table (with fkey)
+Product belongs_to :category
+rails g migration AddCategoryIdToProducts category_id:integer
+
+*open the migrate file to check
+*rake db:migrate
+
+C) Add Category to Products:
+   home page, show page, new page, and edit page
+	Product.create(category: Category.find(3), name:"gloves", description:"gardening gloves", price:20.01)
+
+D) 	SHOW ALL PRODUCTS: 
+	Product.joins(:category).select('products.*, categories.name as category_name')
+
+	SHOW ONE PRODUCT:
+	Product.joins(:category).select('products.*, categories.name as category_name').where('products.id = ?', 4)
+
+	UPDATE PRODUCT:
+	Product.find(5).update(category_id:5)
+
+C) Add controller 
+rails g controller Comments create show
+
+rails g model Comment comment:text product:references
+x		sbl 		db>migrate folder  >> to verify
+x		rails_c		rake db:migrate
+
+product.rb
+	has_many :comments  :dependent => :destroy
+
+comment.rb
+	belongs_to :products   :dependent => :destroy
+
+Comment.create(product_id:5, comment:"hi, this is a comment")
+
+Product.joins(:comments).select('products.*, comments.comment')
+
+Comment.where(product_id: 5)
+
+
+casey:products_dashboard caseylarue$ rake routes
+      Prefix Verb   URI Pattern                  Controller#Action
+    products GET    /products(.:format)          products#index
+             POST   /products(.:format)          products#create
+ new_product GET    /products/new(.:format)      products#new
+edit_product GET    /products/:id/edit(.:format) products#edit
+     product GET    /products/:id(.:format)      products#show
+             PATCH  /products/:id(.:format)      products#update
+             PUT    /products/:id(.:format)      products#update
+             DELETE /products/:id(.:format)      products#destroy
+    comments GET    /comments(.:format)          comments#index
+             POST   /comments(.:format)          comments#create
+ new_comment GET    /comments/new(.:format)      comments#new
+edit_comment GET    /comments/:id/edit(.:format) comments#edit
+     comment GET    /comments/:id(.:format)      comments#show
+             PATCH  /comments/:id(.:format)      comments#update
+             PUT    /comments/:id(.:format)      comments#update
+             DELETE /comments/:id(.:format)      comments#destroy
+        root GET    /                            products#index
+             POST   /products/:id(.:format)      products#update
+
